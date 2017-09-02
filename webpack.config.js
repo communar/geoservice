@@ -3,6 +3,7 @@ let HtmlPlugin = require('html-webpack-plugin');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let loaders = require('./webpack.config.loaders')();
+let path = require('path');
 
 loaders.push({
     test: /\.css$/,
@@ -13,10 +14,12 @@ loaders.push({
 });
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        main: './src/index.js'
+    },
     output: {
         filename: '[hash].js',
-        path: './dist'
+        path: path.resolve('dist')
     },
     devtool: 'source-map',
     module: {
@@ -32,7 +35,9 @@ module.exports = {
         new ExtractTextPlugin('styles.css'),
         new HtmlPlugin({
             title: 'Loft School sample project',
-            template: 'index.hbs'
+            template: 'index.hbs',
+            filename: 'index.html',
+            chunks: ['main']
         }),
         new CleanWebpackPlugin(['dist'])
     ]
