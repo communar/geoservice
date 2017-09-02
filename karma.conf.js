@@ -18,7 +18,7 @@ module.exports = function(config) {
             fixWebpackSourcePaths: true
         },
         port: 9876,
-        browsers: ['Firefox'], // или Chrome
+        browsers: ['Chrome'], // или Chrome
         captureTimeout: 20000,
         singleRun: true,
         plugins: [
@@ -26,7 +26,7 @@ module.exports = function(config) {
             require('karma-chai'),
             require('karma-webpack'),
             require('karma-mocha-reporter'),
-            require('karma-firefox-launcher'),
+            // require('karma-firefox-launcher'),
             require('karma-chrome-launcher'),
             require('karma-coverage-istanbul-reporter'),
             require('karma-sourcemap-loader')
